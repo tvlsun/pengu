@@ -136,3 +136,10 @@ footer{color:#9da8ba}
 .wallet-signin-top:hover{border-color:#e6bd70;background:rgba(230,189,112,.22)}
 .wallet-signin-top:disabled{opacity:.6;cursor:wait}
 @media(max-width:620px){.wallet-signin-top{padding:9px 8px;font-size:10px}.top-actions{gap:6px}}
+
+
+/* Always-visible MetaMask entry point, independent of header wrapping */
+.wallet-signin-floating{position:fixed!important;right:16px!important;top:88px!important;z-index:99999!important;display:inline-flex!important;visibility:visible!important;opacity:1!important;align-items:center;justify-content:center;gap:8px;padding:12px 15px;border:1px solid #e6bd70;border-radius:12px;background:#111a2b;color:#ffe8b4;font:700 13px/1.2 inherit;box-shadow:0 8px 28px rgba(0,0,0,.35);cursor:pointer}
+.wallet-signin-floating:hover{background:#24314a}
+.wallet-signin-floating:disabled{opacity:.65!important;cursor:wait}
+@media(max-width:620px){.wallet-signin-floating{top:auto!important;right:12px!important;bottom:14px!important;padding:14px 16px;font-size:13px}}
