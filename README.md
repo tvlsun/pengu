@@ -56,3 +56,11 @@ The login screen includes a MetaMask sign-in button. It requests the wallet acco
 
 ## Visual direction
 Updated to an original dark-fantasy strategy-arena look inspired by the broad feel of modern spell-chess games: deep navy panels, subtle grid texture, chess-piece motifs, gold accents, trial cards, and a player hall. This is not a copy of Anichess branding or assets; existing Pengu mini-games and sign-in code are retained.
+
+## Firestore cloud sync
+1. Firebase Console → Build → Firestore Database → create database if needed.
+2. Open Firestore Database → Rules. Publish the rules from `firestore.rules`.
+3. The site now loads `firestore-sync.js` to sync Google-authenticated profiles, linked wallet address, points, best scores, daily reward date, and the shared leaderboard.
+4. Keep `firebase-config.js` unchanged. Firebase Auth Google sign-in must be enabled.
+5. MetaMask-only sign-in is not server-verified, so for now sign in with Google and then connect MetaMask to associate the wallet securely with that Google profile.
+6. This starter writes points from the browser and is not cheat-proof. Do not use it for token payouts or valuable rewards without server-side validation.
