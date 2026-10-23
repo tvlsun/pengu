@@ -56,7 +56,7 @@ document.addEventListener('click',event=>{
 menuSignOut?.addEventListener('click',async()=>{
   closeAccountMenu();
   try {
-    if(auth && currentUser && currentUser.authProvider !== 'metamask') await signOut(auth);
+    if(auth && currentUser) await signOut(auth);
     guestMode=false;
     walletSessionAddress=null;
     currentUser=null;
