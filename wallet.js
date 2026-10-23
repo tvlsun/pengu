@@ -1,6 +1,6 @@
 // MetaMask wallet connection. Never request or store seed phrases/private keys.
 const connectButtons = [document.getElementById("walletConnect"), document.getElementById("walletPanelConnect")].filter(Boolean);
-const walletSignInButton = document.getElementById("walletSignIn");
+const walletSignInButtons = [document.getElementById("walletSignIn"), document.getElementById("walletSignInTop")].filter(Boolean);
 const authStatus = document.getElementById("authStatus");
 const buttonText = document.getElementById("walletButtonText");
 const status = document.getElementById("walletStatus");
@@ -93,7 +93,7 @@ async function signInWithWallet() {
     window.open("https://metamask.io/download/", "_blank", "noopener,noreferrer");
     return;
   }
-  walletSignInButton.disabled = true;
+  walletSignInButtons.forEach(button => { button.disabled = true; });
   if (authStatus) authStatus.textContent = "Connect MetaMask and approve the sign-in message…";
   try {
     const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
@@ -119,7 +119,7 @@ async function signInWithWallet() {
       authStatus.className = "auth-status error";
     }
   } finally {
-    walletSignInButton.disabled = false;
+    walletSignInButtons.forEach(button => { button.disabled = false; });
   }
 }
-walletSignInButton?.addEventListener("click", signInWithWallet);
+walletSignInButtons.forEach(button => button.addEventListener("click", signInWithWallet));
