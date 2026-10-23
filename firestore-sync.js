@@ -60,6 +60,7 @@ if(isFirebaseConfigured){
     onAuthStateChanged(auth,async signedUser=>{
       user=signedUser||null;
       if(!user)return;
+      if(user.isAnonymous && sessionStorage.getItem("pengu-wallet-signed-in")) walletAddress=sessionStorage.getItem("pengu-wallet-signed-in");
       try{
         const snap=await getDoc(doc(db,"users",user.uid));
         if(snap.exists()){
@@ -82,6 +83,7 @@ if(isFirebaseConfigured){
     window.addEventListener("pengu-daily-reward",e=>{rewardDate=e.detail?.date||localStorage.getItem(rewardKey);scheduleSave();});
     window.addEventListener("pengu-daily-reward-state",e=>{rewardDate=e.detail?.date||null;});
     window.addEventListener("pengu-wallet-changed",e=>{walletAddress=e.detail?.connected?e.detail?.address||null:null;scheduleSave();});
+    window.addEventListener("pengu-wallet-signin",e=>{walletAddress=e.detail?.address||null;scheduleSave();});
     window.addEventListener("pengu-auth-changed",e=>{
       if(e.detail?.user?.authProvider==="metamask")status("For secure cloud saving, sign in with Google first and then link your wallet.");
     });
