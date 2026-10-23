@@ -33,3 +33,25 @@ loginOpen?.addEventListener('click',async()=>{
     return;
   }
   if(currentUser&&auth){try{await signOut(auth);guestMode=false;sessionStorage.removeItem('pengu-guest');dispatchUser(null,false);}catch(error){setStatus(`Could not sign out: ${error.message}`,'error');}}else{if(authScreen)authScreen.hidden=false;setStatus(isFirebaseConfigured?'Choose your Google account to continue.':'Add Firebase config to enable Google sign-in.','');}});
+
+
+const profileSignOut=$('profileSignOut');
+async function signOutFromProfile(){
+  try {
+    if(auth && currentUser && currentUser.authProvider !== 'metamask') {
+      await signOut(auth);
+    }
+    guestMode=false;
+    walletSessionAddress=null;
+    currentUser=null;
+    sessionStorage.removeItem('pengu-guest');
+    sessionStorage.removeItem('pengu-wallet-signed-in');
+    dispatchUser(null,false);
+    setStatus('You have signed out successfully.','success');
+    if(authScreen) authScreen.hidden=false;
+  } catch(error) {
+    console.error('Sign out failed:',error);
+    setStatus('Could not sign out. Please try again.','error');
+  }
+}
+profileSignOut?.addEventListener('click',signOutFromProfile);
