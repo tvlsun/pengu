@@ -1,6 +1,6 @@
 // MetaMask wallet connection. Never request or store seed phrases/private keys.
-const connectButtons = [document.getElementById("walletConnect"), document.getElementById("walletPanelConnect")].filter(Boolean);
-const walletSignInButtons = [document.getElementById("walletSignIn"), document.getElementById("walletSignInTop"), document.getElementById("walletSignInFloating")].filter(Boolean);
+const connectButtons = [document.getElementById("walletPanelConnect")].filter(Boolean);
+const walletSignInButtons = [document.getElementById("walletConnect"), document.getElementById("walletSignIn")].filter(Boolean);
 const authStatus = document.getElementById("authStatus");
 const buttonText = document.getElementById("walletButtonText");
 const status = document.getElementById("walletStatus");
@@ -30,7 +30,7 @@ function renderWallet(address, persist = true) {
     if (connectedAddress) localStorage.setItem(key, connectedAddress);
     else localStorage.removeItem(key);
   }
-  if (buttonText) buttonText.textContent = address ? shortAddress(address) : "Connect Wallet";
+  if (buttonText) buttonText.textContent = address ? shortAddress(address) : "Sign in with MetaMask";
   // Keep the full address out of the shared wallet banner; show only a generic status there.
   if (status) status.textContent = address ? "Wallet linked to your profile on this browser." : "Connect MetaMask to link a wallet to your profile.";
   if (panelTitle) panelTitle.textContent = address ? "Wallet linked" : "Connect your wallet";
