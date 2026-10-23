@@ -34,3 +34,18 @@ $$('[data-game]').forEach(btn=>btn.addEventListener('click',()=>openGame(btn.dat
 $('#soundToggle').addEventListener('click',()=>{state.sound=!state.sound;$('#soundToggle').textContent=state.sound?'🔊 Sound':'🔇 Muted';$('#soundToggle').setAttribute('aria-pressed',String(!state.sound));});
 window.addEventListener('pengu-auth-changed',e=>{const u=e.detail?.user;if(u){window.penguPlayerName=u.displayName||u.email?.split('@')[0]||'Player';$('#profileName').textContent=window.penguPlayerName;$('#profileEmail').textContent=u.email||'Google account connected';$('#profileAvatar').innerHTML=u.photoURL?`<img src="${u.photoURL}" alt="">`:'🐧';}else if(e.detail?.guest){window.penguPlayerName='Guest Player';$('#profileName').textContent='Guest Player';$('#profileEmail').textContent='Playing as guest';}renderLeaderboard();});
 renderScores();claimDaily();window.dispatchEvent(new CustomEvent('pengu-scores-updated',{detail:{scores:{...scores}}}));window.dispatchEvent(new CustomEvent('pengu-daily-reward-state',{detail:{date:localStorage.getItem(rewardsKey)||null}}));
+
+
+window.addEventListener('pengu-cloud-profile-loaded',event=>{
+  const cloud=event.detail?.scores;
+  if(!cloud)return;
+  scores={...scores,
+    catcher:Math.max(Number(scores.catcher)||0,Number(cloud.catcher)||0),
+    memory:Math.max(Number(scores.memory)||0,Number(cloud.memory)||0),
+    tap:Math.max(Number(scores.tap)||0,Number(cloud.tap)||0),
+    points:Math.max(Number(scores.points)||0,Number(cloud.points)||0)
+  };
+  localStorage.setItem(scoreKey,JSON.stringify(scores));
+  renderScores();
+  claimDaily();
+});
