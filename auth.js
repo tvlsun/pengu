@@ -24,23 +24,39 @@ window.addEventListener('pengu-wallet-signin', event => {
   walletSessionAddress=event.detail?.address||null;
   if(walletSessionAddress)dispatchWalletUser(walletSessionAddress);
 });
-loginOpen?.addEventListener('click',async()=>{
-  if(currentUser?.authProvider==='metamask'){
-    sessionStorage.removeItem('pengu-wallet-signed-in');
-    walletSessionAddress=null;
-    dispatchUser(null,false);
-    setStatus('Wallet sign-in ended for this browser session.');
+const accountMenu=$('accountMenu');
+const menuSignOut=$('menuSignOut');
+function closeAccountMenu(){
+  if(accountMenu) accountMenu.hidden=true;
+  loginOpen?.setAttribute('aria-expanded','false');
+}
+function refreshAccountMenu(user=currentUser,guest=guestMode){
+  const name=$('accountMenuName'), email=$('accountMenuEmail'), avatar=$('accountMenuAvatar');
+  if(name) name.textContent=user?.displayName||user?.email?.split('@')[0]||(guest?'Guest player':'Player');
+  if(email) email.textContent=user?.email||(user?.authProvider==='metamask'?'MetaMask wallet connected':guest?'Guest session':'Pengu Playground');
+  if(avatar) avatar.textContent=user?.authProvider==='metamask'?'🦊':'🐧';
+}
+loginOpen?.addEventListener('click',()=>{
+  if(!currentUser&&!guestMode){
+    if(authScreen)authScreen.hidden=false;
+    setStatus(isFirebaseConfigured?'Choose your Google account to continue.':'Add Firebase config to enable Google sign-in.','');
     return;
   }
-  if(currentUser&&auth){try{await signOut(auth);guestMode=false;sessionStorage.removeItem('pengu-guest');dispatchUser(null,false);}catch(error){setStatus(`Could not sign out: ${error.message}`,'error');}}else{if(authScreen)authScreen.hidden=false;setStatus(isFirebaseConfigured?'Choose your Google account to continue.':'Add Firebase config to enable Google sign-in.','');}});
-
-
-const profileSignOut=$('profileSignOut');
-async function signOutFromProfile(){
+  refreshAccountMenu();
+  if(accountMenu){
+    accountMenu.hidden=!accountMenu.hidden;
+    loginOpen.setAttribute('aria-expanded',String(!accountMenu.hidden));
+  }
+});
+$('accountProfileLink')?.addEventListener('click',closeAccountMenu);
+document.addEventListener('click',event=>{
+  const wrap=document.querySelector('.account-menu-wrap');
+  if(wrap&&!wrap.contains(event.target))closeAccountMenu();
+});
+menuSignOut?.addEventListener('click',async()=>{
+  closeAccountMenu();
   try {
-    if(auth && currentUser && currentUser.authProvider !== 'metamask') {
-      await signOut(auth);
-    }
+    if(auth && currentUser && currentUser.authProvider !== 'metamask') await signOut(auth);
     guestMode=false;
     walletSessionAddress=null;
     currentUser=null;
@@ -48,10 +64,9 @@ async function signOutFromProfile(){
     sessionStorage.removeItem('pengu-wallet-signed-in');
     dispatchUser(null,false);
     setStatus('You have signed out successfully.','success');
-    if(authScreen) authScreen.hidden=false;
+    if(authScreen)authScreen.hidden=false;
   } catch(error) {
     console.error('Sign out failed:',error);
     setStatus('Could not sign out. Please try again.','error');
   }
-}
-profileSignOut?.addEventListener('click',signOutFromProfile);
+});
