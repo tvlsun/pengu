@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0d19">
+  <meta name="description" content="Pengu Arcane Arena — a strategy-inspired mini-game hub with quests, player profiles, wallet sign-in, and arcade challenges.">
+  <title>Pengu Arcane Arena — Play • Quest • Rise</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="bg-orb orb-one"></div><div class="bg-orb orb-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Pengu Playground home"><span class="brand-icon">🐧</span><span>pengu<span class="brand-light">play</span></span></a>
+    <nav><a href="#games">Games</a><a href="#about">About</a></nav>
+    <div class="top-actions"><button class="sound-button" id="soundToggle" aria-pressed="false" title="Toggle sound effects">🔊 Sound</button><button class="wallet-button" id="walletConnect" type="button">🦊 <span id="walletButtonText">Connect Wallet</span></button><button class="login-button" id="loginOpen"><span class="login-avatar" id="navAvatar">🐧</span><span id="navLoginText">Sign in</span></button></div>
+  </header>
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="live-dot"></span> THE ARCANE ARCADE IS OPEN</div>
+        <h1>Play with<br><span>purpose.</span></h1>
+        <p>Enter a strategy-inspired arena of quick challenges, clever puzzles, and personal bests. Choose your trial, earn points, and climb your own legend.</p>
+        <a class="primary-button" href="#games">Enter the arena <span>↘</span></a>
+        <div class="hero-stats"><div><strong>03</strong><span>trials</span></div><i></i><div><strong>∞</strong><span>replays</span></div><i></i><div><strong>♟</strong><span>strategy spirit</span></div></div>
+      </div>
+      <div class="hero-art" aria-label="Cartoon penguin mascot">
+        <div class="sun-disc"></div><div class="orbit orbit-a"></div><div class="orbit orbit-b"></div>
+        <span class="floating-coin coin-a">★</span><span class="floating-coin coin-b">✦</span><span class="floating-coin coin-c">●</span>
+        <div class="penguin-mascot"><div class="penguin-shine"></div><div class="penguin-face"><span class="eye"></span><span class="eye"></span><span class="beak"></span></div><div class="belly"></div><div class="wing wing-left"></div><div class="wing wing-right"></div><div class="foot foot-left"></div><div class="foot foot-right"></div></div>
+        <div class="mascot-tag">hey, player! <span>✦</span></div>
+      </div>
+    </section>
+    <section class="arcane-strip" aria-label="Arena features">
+      <div class="arcane-feature"><span class="feature-symbol">♜</span><div><strong>Three Trials</strong><small>Master reflex, memory, and speed</small></div></div>
+      <div class="arcane-feature"><span class="feature-symbol">✧</span><div><strong>Earn Points</strong><small>Build your personal legend</small></div></div>
+      <div class="arcane-feature"><span class="feature-symbol">♛</span><div><strong>Your Profile</strong><small>Google and wallet options</small></div></div>
+    </section>
+    <section class="games-section" id="games">
+      <div class="section-heading"><div><div class="eyebrow">CHOOSE YOUR TRIAL</div><h2>The arena <span>✦</span></h2></div><div class="game-count">03 TRIALS <span>•</span> FREE TO PLAY</div></div>
+      <div class="game-grid">
+        <article class="game-card featured">
+          <div class="card-art coin-art"><div class="art-cloud cloud-left"></div><div class="art-cloud cloud-right"></div><div class="mini-pengu">🐧</div><span class="art-coin ac1">★</span><span class="art-coin ac2">★</span><span class="art-coin ac3">★</span><span class="art-ground"></span><span class="art-label">ARCANE ORBS</span></div>
+          <div class="card-content"><div class="card-topline"><span class="category">TRIAL I · REFLEX</span><span class="best-score">BEST <b id="best-catcher">0</b></span></div><h3>Orb Collector</h3><p>Gather enchanted orbs before the arena clock runs out.</p><button class="play-button" data-game="catcher">Play now <span>→</span></button></div>
+        </article>
+        <article class="game-card">
+          <div class="card-art memory-art"><div class="memory-stack"><span>🐧</span><span>⭐</span><span>🍓</span><span>🐟</span></div><span class="art-label">RUNE MEMORY</span></div>
+          <div class="card-content"><div class="card-topline"><span class="category">TRIAL II · MEMORY</span><span class="best-score">BEST <b id="best-memory">0</b></span></div><h3>Glyph Memory</h3><p>Reveal the runes and pair every matching glyph.</p><button class="play-button" data-game="memory">Play now <span>→</span></button></div>
+        </article>
+        <article class="game-card">
+          <div class="card-art tap-art"><div class="tap-target">TAP!</div><span class="speed-lines">〰 〰</span><span class="art-label">REFLEX TRIAL</span></div>
+          <div class="card-content"><div class="card-topline"><span class="category">SPEED & TIMING</span><span class="best-score">BEST <b id="best-tap">0</b></span></div><h3>Reflex Trial</h3><p>Strike the shifting target before your time expires.</p><button class="play-button" data-game="tap">Play now <span>→</span></button></div>
+        </article>
+      </div>
+    </section>
+    <section class="extras-section" id="player-hub">
+      <div class="wallet-panel" id="walletPanel"><div class="wallet-panel-icon">🦊</div><div class="wallet-panel-copy"><strong>Enter with your wallet</strong><span id="walletStatus">Connect MetaMask to link your wallet to this browser profile.</span></div><button class="wallet-button wallet-panel-button" id="walletPanelConnect" type="button">Connect MetaMask</button></div>
+      <div class="section-heading"><div><div class="eyebrow">YOUR ADVENTURER PROFILE</div><h2>Hall of legends <span>✦</span></h2></div><div class="game-count">PLAY • EARN • ASCEND</div></div>
+      <div class="extras-grid">
+        <article class="extra-card"><div class="eyebrow">YOUR PROFILE</div><div class="profile-row" style="margin-top:14px"><div class="profile-avatar" id="profileAvatar">🐧</div><div><h3 id="profileName">Guest Player</h3><div class="profile-email" id="profileEmail">Playing on this device</div></div></div><p>Your personal-best scores and points are saved in this browser. Sign in with Google to show your account profile.</p><div class="profile-wallet" id="profileWallet" hidden><div class="eyebrow">YOUR LINKED WALLET · PRIVATE PROFILE VIEW</div><div class="profile-wallet-row"><span id="profileWalletAddress">Not connected</span><button type="button" class="copy-wallet-button" id="copyProfileWallet">Copy</button></div><p class="profile-wallet-note">Only shown inside your profile on this browser; it is not listed on the leaderboard.</p></div><div class="eyebrow">TOTAL POINTS</div><div class="points-number" id="totalPoints">0</div></article>
+        <article class="extra-card"><div class="eyebrow">DAILY BONUS</div><h3>Little daily treat 🎁</h3><p>Claim a one-time bonus each day on this device. Come back tomorrow for another.</p><button class="daily-button" id="dailyReward">Claim +50 points ✨</button><p id="rewardStatus" role="status">Your daily reward is waiting.</p></article>
+        <article class="extra-card"><div class="eyebrow">HALL OF FAME · LOCAL</div><h3>Top adventurers 🏆</h3><p>A friendly leaderboard based on this browser's saved scores. Not a global online ranking.</p><ol class="leaderboard" id="leaderboardList"></ol></article>
+      </div>
+    </section>
+    <section class="bottom-banner" id="about"><div class="banner-pengu">🐧</div><div><span class="eyebrow">MADE FOR YOUR BREAK</span><h2>One more round?</h2><p>No downloads. No fuss. Just a little fun.</p></div><a href="#games" class="banner-link">Let's play <span>↗</span></a></section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-icon">🐧</span><span>pengu<span class="brand-light">play</span></span></a><span>Made with <b>♥</b> for curious players.</span><span class="footer-note">Scores saved on this device</span></footer>
+
+
+  <div class="auth-backdrop" id="authScreen">
+    <section class="auth-card" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="auth-brand"><span>🐧</span><b>pengu<span>play</span></b></div>
+      <div class="auth-mascot">🐧<i>✦</i><em>★</em></div>
+      <div class="auth-eyebrow">YOUR NEXT LITTLE ADVENTURE</div>
+      <h2 id="authTitle">Welcome to<br><span>Pengu Playground</span></h2>
+      <p class="auth-description">Choose Google or MetaMask to enter Pengu Playground. MetaMask sign-in asks you to sign a message; it never asks for your seed phrase or private key.</p>
+      <button class="google-button" id="googleSignIn"><span class="google-g">G</span><span>Continue with Google</span><span class="google-arrow">→</span></button>
+      <button class="wallet-signin-button" id="walletSignIn" type="button"><span class="wallet-signin-icon">🦊</span><span>Sign in with MetaMask</span><span class="google-arrow">→</span></button>
+      <div class="auth-divider"><span>or</span></div>
+      <button class="guest-button" id="guestContinue">Explore as guest</button>
+      <p class="auth-status" id="authStatus" role="status">Google sign-in needs your Firebase project configuration.</p>
+      <div class="auth-privacy">🔒 Google uses Firebase Auth. MetaMask uses a wallet signature; server-verified wallet sessions require backend setup.</div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" id="gameModal" hidden>
+    <section class="game-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="close-modal" id="closeModal" aria-label="Close game">×</button>
+      <div class="modal-eyebrow">PENGU PLAYGROUND</div><h2 id="modalTitle">Let's play!</h2><p id="modalDescription" class="modal-description"></p>
+      <div class="game-hud"><div><small>SCORE</small><strong id="currentScore">0</strong></div><div><small>TIME / MOVES</small><strong id="gameTime">30s</strong></div><div><small>BEST</small><strong id="modalBest">0</strong></div></div>
+      <div id="gameStage" class="game-stage"></div>
+      <div class="modal-actions"><button class="primary-button" id="startGame">Start game <span>▶</span></button><button class="secondary-button" id="restartGame">Restart ↻</button></div>
+      <p class="game-hint" id="gameHint">Ready when you are!</p>
+    </section>
+  </div>
+  <script type="module" src="auth.js"></script>
+  <script type="module" src="wallet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
