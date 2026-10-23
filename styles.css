@@ -110,3 +110,23 @@ footer{color:#9da8ba}
 .account-menu-link:hover{background:rgba(230,189,112,.09);color:#ffe7aa}
 .account-menu-signout{margin-top:4px;border-top:1px solid rgba(230,189,112,.12);border-radius:0 0 9px 9px;color:#f0c6bd;padding-top:13px}
 .account-menu-signout:hover{background:rgba(193,91,82,.13);color:#ffddd4}
+
+
+/* Compact dark-gold account dropdown inspired by strategy-game profile menus */
+.account-menu-wrap{position:relative;z-index:60}
+.account-chevron{font-size:15px;color:var(--arena-gold-light);margin-left:2px}
+.account-menu{position:absolute;right:0;top:calc(100% + 12px);width:248px;padding:10px;border:1px solid rgba(230,189,112,.32);border-radius:15px;background:linear-gradient(155deg,#172034,#0b101d);box-shadow:0 20px 55px rgba(0,0,0,.45);color:#f3f0e8;z-index:100}
+.account-menu[hidden]{display:none}
+.account-menu:before{content:"";position:absolute;right:23px;top:-6px;width:10px;height:10px;transform:rotate(45deg);background:#172034;border-left:1px solid rgba(230,189,112,.32);border-top:1px solid rgba(230,189,112,.32)}
+.account-menu-heading{display:flex;align-items:center;gap:11px;padding:9px 8px 12px}
+.account-menu-avatar{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:linear-gradient(135deg,#e5c47e,#8f70b5);color:#161321;font-size:22px;overflow:hidden;flex-shrink:0}
+.account-menu-heading strong,.account-menu-heading small{display:block;max-width:165px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.account-menu-heading strong{font-size:13px;color:#fff2d0}
+.account-menu-heading small{font-size:10px;color:#aab4c7;margin-top:3px}
+.account-menu-divider{height:1px;background:rgba(230,189,112,.16);margin:2px 0 7px}
+.account-menu-link,.account-menu-signout{display:flex;align-items:center;gap:10px;width:100%;padding:11px 10px;border:0;border-radius:9px;background:transparent;color:#dfe4ef;text-align:left;font-size:12px;font-weight:800}
+.account-menu-link span:nth-child(2){flex:1}
+.account-menu-link span:last-child{color:#9ba7bb}
+.account-menu-link:hover{background:rgba(230,189,112,.09);color:#ffe7aa}
+.account-menu-signout{margin-top:4px;border-top:1px solid rgba(230,189,112,.12);border-radius:0 0 9px 9px;color:#f0c6bd;padding-top:13px}
+.account-menu-signout:hover{background:rgba(193,91,82,.13);color:#ffddd4}
