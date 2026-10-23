@@ -40,7 +40,7 @@ function renderWallet(address, persist = true) {
   });
   if (profileWallet) profileWallet.hidden = !address || !currentOwnerKey;
   if (profileWalletAddress) profileWalletAddress.textContent = address || "";
-  window.dispatchEvent(new CustomEvent("pengu-wallet-changed", { detail: { connected: Boolean(address), linkedToProfile: Boolean(address && currentOwnerKey) } }));
+  window.dispatchEvent(new CustomEvent("pengu-wallet-changed", { detail: { connected: Boolean(address), linkedToProfile: Boolean(address && currentOwnerKey), address: address || null } }));
 }
 async function connectWallet() {
   if (!window.ethereum) {
