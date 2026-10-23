@@ -1,6 +1,6 @@
 // MetaMask wallet connection. Never request or store seed phrases/private keys.
 const connectButtons = [document.getElementById("walletConnect"), document.getElementById("walletPanelConnect")].filter(Boolean);
-const walletSignInButtons = [document.getElementById("walletSignIn"), document.getElementById("walletSignInTop")].filter(Boolean);
+const walletSignInButtons = [document.getElementById("walletSignIn"), document.getElementById("walletSignInTop"), document.getElementById("walletSignInFloating")].filter(Boolean);
 const authStatus = document.getElementById("authStatus");
 const buttonText = document.getElementById("walletButtonText");
 const status = document.getElementById("walletStatus");
